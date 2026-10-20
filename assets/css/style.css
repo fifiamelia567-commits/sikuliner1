@@ -1,0 +1,167 @@
+/* 
+  SIKULINER – Sistem Informasi Penjualan Kuliner
+  Styles & Print Stylesheet
+  Author: Fifi Amelia (XII RPL 1 - No. Absen 14)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #059669; /* Emerald Green Segar Kuliner */
+  --primary-dark: #047857;
+  --primary-light: #ecfdf5;
+  --secondary: #0f172a;
+  --accent: #f59e0b;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Animations */
+@keyframes pulseBadge {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.85;
+  }
+}
+
+.pulse-warning {
+  animation: pulseBadge 1.5s infinite ease-in-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* POS Screen Styles */
+.pos-menu-card {
+  transition: all 0.2s ease;
+}
+.pos-menu-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+/* Receipt Paper Effect */
+.receipt-paper {
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  border-radius: 8px;
+}
+
+.receipt-paper::before,
+.receipt-paper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background-size: 14px 6px;
+  background-repeat: repeat-x;
+}
+
+.receipt-paper::before {
+  top: -6px;
+  background-image: radial-gradient(circle at 7px -1px, transparent 6px, #ffffff 7px);
+}
+
+.receipt-paper::after {
+  bottom: -6px;
+  background-image: radial-gradient(circle at 7px 7px, transparent 6px, #ffffff 7px);
+}
+
+/* Modal styling */
+.modal-backdrop-blur {
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+/* Print Specific Rules */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  
+  #receiptModal, #receiptModal * {
+    visibility: visible;
+  }
+  
+  #receiptModal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only-receipt {
+    width: 80mm !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 10px !important;
+    box-shadow: none !important;
+    border: none !important;
+    font-size: 11px !important;
+    color: #000 !important;
+  }
+
+  /* Printable Report */
+  #printableReport, #printableReport * {
+    visibility: visible;
+  }
+  
+  #printableReport {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    padding: 20px;
+    font-size: 12px;
+  }
+}
+
